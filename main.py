@@ -7,12 +7,12 @@ import yaml
 
 from or_pcd.Aligner.Aligner import Aligner
 from or_pcd.Optimizer.generalizedICP import GeneralizedICP
-from or_pcd.Preprocessor.farthestDownsampler import FarthestDownsampler
-from or_pcd.Preprocessor.outliers.sor import SOR
+from or_pcd.Preprocessor.Downsamplers.farthestDownsampler import FarthestDownsampler
+from or_pcd.Preprocessor.Outliers.sor import SOR
 from or_pcd.Preprocessor.preprocessor import Preprocessor
-from or_pcd.Preprocessor.randomDownsampler import RandomDownsampler
-from or_pcd.Preprocessor.scaler import Scaler
-from or_pcd.Preprocessor.voxelDownsampler import VoxelDownsampler
+from or_pcd.Preprocessor.Downsamplers.randomDownsampler import RandomDownsampler
+from or_pcd.Preprocessor.Scalers.radiusScaler import RadiusScaler as Scaler
+from or_pcd.Preprocessor.Downsamplers.voxelDownsampler import VoxelDownsampler
 from or_pcd.Visualizer.Visualizer import (
     visualize_point_clouds,
     draw_registration_result,
@@ -35,7 +35,7 @@ from or_pcd.utils.constants import (
     __ALIGNER_STD__,
     __MULTISTART_ATTEMPTS__,
     __ALIGNER_EPS__,
-    __MAX_CORRESPONDENCE_DISTANCE__,
+    __MAXIMUM_CORRESPONDENCE_DISTANCE__,
     __MAX_ITERATIONS__,
 )
 
@@ -104,7 +104,7 @@ def main():
 
     # TODO remove magic numbers
     optimizer = GeneralizedICP(
-        max_correspondence_distance=__MAX_CORRESPONDENCE_DISTANCE__,
+        max_correspondence_distance=__MAXIMUM_CORRESPONDENCE_DISTANCE__,
         max_iterations=__MAX_ITERATIONS__,
     )
 
